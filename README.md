@@ -15,7 +15,7 @@ My research proves that the AI does not just react to the mood of a message; it 
 ## Methodology
 
 ### Phase 1: Synthetic Dataset Construction
-I developed a rigorous dataset of 15 contrastive prompt pairs[cite: 20, 21].Each pair shared an identical technical task such as QA hand offs to ensure the model was reacting only to the behavioral shift and not the subject matter.
+I developed a rigorous dataset of 15 contrastive prompt pairs.Each pair shared an identical technical task such as QA hand offs to ensure the model was reacting only to the behavioral shift and not the subject matter.
 
 **Proactive Persona**: Used active verbs and alignment focused language.
 **Stagnant Persona**: Used avoidance language and reliance on luck.
