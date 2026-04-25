@@ -1,77 +1,107 @@
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1MS8Kq9BF6G795UF6kO6FgKvbokoGvVeU?usp=sharing)
 
-## The Problem
-At the Mentor Me Collective MMC I designed behavioral stress tests to identify failure modes in human systems specifically how agency drift and motivation decay manifest in mentee behavior.
-This project applies that same methodology to language models isolating which internal representations activate under behavioral pressure and naming those circuits so I can ultimately intervene on them.
+Agency Circuit Evaluator: Mechanistic Interpretability for Behavioral Drift Detection 
 
-## Research Goal
-This project uses Mechanistic Interpretability which is the study of looking inside the brain of an Artificial Intelligence to analyze its raw math. The goal is to see if models like Google Gemini and NVIDIA NeMo can actually distinguish between a high momentum professional and one who is stagnating.
-Does the AI only understand the technical words being typed or can it mathematically detect the underlying psychological state of the user?
+A contrastive text classification framework for auditing how AI models represent psychological states in their latent space 
 
-## Comparative Analysis (Google Gemini vs. NVIDIA NeMo)
+Can an AI mathematically detect when a person is losing momentum before they even realize it themselves? 
 
-### **Comparative Analysis: Google Gemini vs. NVIDIA NeMo**
+### What This Is 
+At its core this is a contrastive text classification study not of model outputs but of internal representations. The question is not what the model says. It is whether the latent space of the model encodes the difference between two psychological states at all and if so which specific dimensions are responsible.
 
-#### **Executive Summary**
-This research investigates the internal mathematical representations of Professional Agency across two distinct AI architectures. By analyzing contrastive Proactive and Stagnant professional updates, I isolated a specific Agency Circuit to determine which model serves as a more sensitive auditor for behavioral drift and burnout.
+This repository contains: 
+* A research notebook notebooks/agency_circuit_analysis.ipynb walking through the full analysis visualizations and findings.
+* A reusable evaluation script src/agency_evaluator.py that any researcher can run against their own model and their own behavioral contrast pairs.
+* A template CSV data/contrast_pairs_template.csv so you can swap in your own use case in minutes.
 
-#### **Performance Benchmarks**
-The core metric for this study is the Cosine Similarity Score. A lower score indicates that the model is more sensitive to the conceptual difference between proactivity and stagnation.
+To run this on your own model: 
 
-| Metric | Google Gemini (001) | NVIDIA (E5-v5) |
+git clone [https://github.com/zindzigriffin/agency_circuit_evaluator](https://github.com/zindzigriffin/agency_circuit_evaluator)
+cd agency_circuit_evaluator
+pip install requirements.txt
+cp .env.example .env
+python src/agency_evaluator.py
+
+### Repository Structure 
+
+agency_circuit_evaluator/
+README.md
+notebooks/
+   agency_circuit_analysis.ipynb
+src/
+   agency_evaluator.py
+data/
+   contrast_pairs_template.csv
+requirements.txt
+.env.example
+
+### Why This Research Exists 
+Every year millions of professionals quietly disengage not dramatically not all at once but through subtle behavioral shifts: language that hedges instead of commits updates that report tasks instead of driving outcomes a slow drift from ownership to passivity. Human mentors can sometimes sense this. But they cannot scale.
+
+AI systems are increasingly being used to evaluate professionals screening resumes scoring interview responses flagging at risk employees. Yet we have almost no scientific understanding of what these models are actually measuring inside. Are they reading the words you type or are they detecting something deeper about your psychological state? And if they are making these judgments can we audit them? 
+
+### The Core Problem with AI Evaluation 
+When we deploy AI models to assess human behavior we make a hidden assumption: that the model understands the meaning of what a person is communicating not just the surface pattern of words. That assumption has never been rigorously tested.
+
+Two professionals can submit status updates describing identical tasks. One writes from a place of momentum and agency. The other writes from a place of avoidance and stagnation. Do AI models see a difference? And if so where in their mathematical architecture does that difference live? Without answering this we are building evaluation systems on an unexamined foundation. This is an AI safety problem.
+
+### What This Research Does 
+This project applies Mechanistic Interpretability the practice of reverse engineering the internal mathematics of AI models to a domain that has never been studied through this lens: professional agency and behavioral drift.
+
+Rather than treating AI models as black boxes that produce outputs this research opens them up and asks: Which specific mathematical dimensions activate when a model processes a stagnating professional versus a high momentum one? Is that circuit consistent? Can it be measured named and intervened upon? 
+
+This is embedding based contrastive text classification with circuit level attribution. Two classes of text proactive vs stagnant are converted to vector representations and the research measures whether those classes are linearly separable in the latent space of the model. The methodology then identifies exactly which dimensions are driving the classification boundary.
+
+### The Methodology 
+I developed 15 contrastive pairs of professional status updates. Each pair describes the exact same technical task but written through two distinct psychological frames: 
+
+* **The Proactive Persona:** language of systemic ownership forward momentum and alignment.
+* **The Stagnant Persona:** language of avoidance isolation and passivity.
+
+These pairs are stored in data/contrast_pairs_template.csv and are fully swappable researchers can substitute any two behavioral or psychological states relevant to their domain. These were then run through two distinct AI architectures to see how each model represents the difference mathematically.
+
+### The A/B Test: Google Gemini vs NVIDIA NeMo 
+
+| Metric | Google Gemini | NVIDIA NeMo |
 | :--- | :--- | :--- |
-| **Average Similarity** | **0.8400** | **0.5683** |
-| **Sensitivity** | Baseline | **32.3% Higher** |
-| **Representation** | Views as minor tone shift | **Views as distinct behavioral states** |
+| **Average Cosine Similarity** | 0.8400 | 0.5683 |
+| **Behavioral Sensitivity** | Baseline | 32.3% Higher |
+| **Model Representation** | Minor tone shift | Distinct behavioral states |
 
-Key Insight: While Gemini compresses these updates into similar professional talk, NVIDIA’s architecture preserves a much wider conceptual gap, making it a significantly more effective tool for identifying the early markers of professional stagnation.
+Cosine Similarity measures how closely two ideas point in the same mathematical direction. A score of 1.0 means the model treats two inputs as nearly identical. A lower score means the model sees a meaningful conceptual gap.
 
-#### Mechanistic Interpretability: The Agency Circuit
-I identified a high-variance sub-circuit within the NVIDIA latent space that is specifically tuned to markers of agency.
-* **The Master Neuron (Dim 927):** This specific dimension serves as the primary driver for detecting behavioral shifts, showing a delta 2.5x higher than the mean dimensional variance.
-* **Circuit Breadth:** A cluster of 40 dimensions (roughly 4% of the total 1024-dimension space) was isolated as the core Agency Circuit.
+The finding: Gemini compresses proactive and stagnant updates into the same general neighborhood it sees professional communication not behavioral divergence. The architecture of NVIDIA preserves a dramatically wider conceptual gap treating agency and stagnation as mathematically distinct states.
 
-#### **Industry Application: Predictive Mentorship**
-This research, informed by my work at Mentor Me Collective, provides a mathematical foundation for automated mentorship interventions:
-* **Stagnation Threshold:** Using the NVIDIA benchmark, systems can now define a Stagnation Threshold (0.56) to catch motivation decay.
-* **Automated Coaching:** Identifying these specific latent shifts allows for proactive mentorship check-ins before behavioral patterns lead to actual churn or burnout.
+### Isolating the Agency Circuit 
+By identifying which specific mathematical dimensions shift most dramatically between the proactive and stagnant personas I isolated what I call the Agency Circuit: a cluster of approximately 40 dimensions roughly 4 percent of the 1024 dimension latent space of NVIDIA that functions as a dedicated detector for behavioral momentum.
 
-I am currently adding the NVIDIA NeMo analysis to provide a comparative baseline against the Gemini results. I intentionally excluded models like Claude due to high API costs because cost accessibility is a major factor in AI safety research. By prioritizing the free open source NVIDIA NeMo model alongside Gemini I want to highlight why researchers and the public need accessible tools. If AI systems are going to be used to evaluate human behavior or manage workflows we need open source transparency to audit how they make those judgments.
+The Master Neuron Dimension 927 emerged as the primary driver showing a delta 2.5x higher than mean dimensional variance across the full space. Dimensions 215 656 and 616 formed supporting nodes in this circuit. Using Principal Component Analysis PCA I projected this high dimensional space into a 2D map. The result: perfect linear separability. The model does not see a gray area between momentum and stagnation. It categorizes professional identity into two mathematically distinct states.
 
-## Methodology
-I developed 15 pairs of status updates where the technical work task is identical for example updating the project database.
+### Why A/B Testing AI Models Matters for Safety 
+Most AI evaluation focuses on what models say. This research focuses on what models know and whether two architectures making the same downstream judgment are doing so for the same internal reasons.
 
-The Proactive Persona Uses language of systemic ownership and alignment.
+1. **Deployment decisions should not be architecture agnostic.** The model you choose determines what behavioral signals you can actually detect.
+2. **Auditing requires opening the box.** If an AI flags someone as at risk we need to be able to trace which internal circuit made that call.
+3. **Access to evaluation tools must be equitable.** By centering the open weight NeMo model of NVIDIA alongside the free tier of Gemini this research demonstrates rigorous interpretability work within real world resource constraints.
 
-The Stagnant Persona Uses language of avoidance isolation and reliance on luck.
+### The Practical Application: Predictive Mentorship 
+This research was directly informed by work at Mentor Me Collective where I previously designed behavioral stress tests to identify failure modes in human mentorship systems specifically how motivation decay and agency drift manifest in mentee behavior.
 
-Turning Language into Math Vectorization
-AI does not read words it converts them into a list of numbers called a vector. This vector represents a physical location in the AI memory. I mapped these coordinates to see if proactive mindsets live in a different mathematical neighborhood than stagnant ones.
+This project applies that same diagnostic methodology to language models. The immediate application: a Stagnation Threshold calibrated at a cosine similarity of 0.56 using the NVIDIA benchmark that allows mentorship systems to monitor professional agency in real time and trigger proactive interventions.
 
-Measuring the Distance Cosine Similarity
-I used a formula called Cosine Similarity to measure the distance between these coordinates.
-What is Cosine Similarity? In simple terms it measures how closely two ideas point in the same direction. Imagine every status update is an arrow in a 3D room:
-If two arrows point in the exact same direction they have a score of 1.0 Perfect Alignment. If they point in different directions the score drops toward 0.
+### What Is Next 
+The current phase establishes the circuit architecture and baseline measurements. The next phase is a 3 month longitudinal study tracking these dimensional coordinates in real time across active professionals moving from detecting stagnation to predicting it before it fully manifests. 
 
-The Discovery
-Despite the identical tasks the AI saw these updates as mathematically distant. The average similarity was 0.84 with the most divergent scenario dropping to 0.7835. This proves the model architecture is more sensitive to agency how you work than content what you do.
+### Tech Stack 
 
-Isolating the Agency Circuit
-By identifying which specific dimensions changed the most between the two personas I isolated Dimensions 215 656 and 616. These are the specific pathways that light up when a user loses professional momentum. I then used Principal Component Analysis PCA to flatten this complex math into a clear 2D map.
+| Layer | Tools |
+| :--- | :--- |
+| **Language** | Python 3.10+ |
+| **Embeddings** | Google Generative AI SDK and NVIDIA NeMo via AI Endpoints |
+| **Analysis** | NumPy and scikit learn |
+| **Visualization** | Matplotlib |
+| **Notebook** | Jupyter |
+| **Config** | python dotenv |
 
-## The Results
-The analysis showed perfect linear separability. The AI does not see a gray area. It categorizes professional identity into two distinct mathematical states.
-
-Industry Application: Predictive Mentorship
-This research provides a mathematical foundation for automated mentorship:
-
-Stagnation Threshold: Using the NVIDIA benchmark, systems can define a Stagnation Threshold (0.56) to catch motivation decay in real-time.
-
-Early Warning Systems: Instead of waiting for a project to fail, an AI could monitor the Agency Circuit and automatically alert a mentor to provide targeted support.
-
-## Why This Matters
-If I can mathematically identify the tipping point where a professional flips from momentum to decay I can build predictive mentorship systems.
-Instead of waiting for a project to fail an AI could monitor the Agency Circuit and automatically alert a mentor to step in. This research bridges the gap between AI mathematical precision and the human empathy required to keep professionals on track.
-
-## Future Work
-My next phase is a 3 month longitudinal study to track these coordinates in real time. The goal is to move from simply detecting stagnation to preventing it through early warning safety systems.
+### About the Researcher 
+Zindzi Griffin is an applied ML researcher and community builder working at the intersection of behavioral science AI safety and human development. This project reflects a core belief: that understanding how AI models represent human states not just what they output is foundational work for building systems that are genuinely safe auditable and beneficial.
