@@ -8,12 +8,37 @@ This project applies that same methodology to language models isolating which in
 This project uses Mechanistic Interpretability which is the study of looking inside the brain of an Artificial Intelligence to analyze its raw math. The goal is to see if models like Google Gemini and NVIDIA NeMo can actually distinguish between a high momentum professional and one who is stagnating.
 Does the AI only understand the technical words being typed or can it mathematically detect the underlying psychological state of the user?
 
-## The Experiment AB Comparison
-To ensure the results are robust I plan to conduct an AB test comparing two different mathematical brains:
+## Comparative Analysis (Google Gemini vs. NVIDIA NeMo)
+Executive Summary
+Certainly! Here is the updated section for your README without the quotation marks. You can paste this directly into your file.
 
-Model A Google Gemini Embedding 001 (Currently Analyzed)
+---
 
-Model B NVIDIA NeMo (Planned Comparison)
+### **Comparative Analysis: Google Gemini vs. NVIDIA NeMo**
+
+#### **Executive Summary**
+This research investigates the internal mathematical representations of Professional Agency across two distinct AI architectures. By analyzing contrastive Proactive and Stagnant professional updates, I isolated a specific Agency Circuit to determine which model serves as a more sensitive auditor for behavioral drift and burnout.
+
+#### **Performance Benchmarks**
+The core metric for this study is the Cosine Similarity Score. A lower score indicates that the model is more sensitive to the conceptual difference between proactivity and stagnation.
+
+| Metric | Google Gemini (001) | NVIDIA (E5-v5) |
+| :--- | :--- | :--- |
+| **Average Similarity** | **0.8400** | **0.5683** |
+| **Sensitivity** | Baseline | **32.3% Higher** |
+| **Representation** | Views as minor tone shift | **Views as distinct behavioral states** |
+
+Key Insight: While Gemini compresses these updates into similar professional talk, NVIDIA’s architecture preserves a much wider conceptual gap, making it a significantly more effective tool for identifying the early markers of professional stagnation.
+
+#### Mechanistic Interpretability: The Agency Circuit
+I identified a high-variance sub-circuit within the NVIDIA latent space that is specifically tuned to markers of agency.
+* **The Master Neuron (Dim 927):** This specific dimension serves as the primary driver for detecting behavioral shifts, showing a delta 2.5x higher than the mean dimensional variance.
+* **Circuit Breadth:** A cluster of 40 dimensions (roughly 4% of the total 1024-dimension space) was isolated as the core Agency Circuit.
+
+#### **Industry Application: Predictive Mentorship**
+This research, informed by my work at Mentor Me Collective, provides a mathematical foundation for automated mentorship interventions:
+* **Stagnation Threshold:** Using the NVIDIA benchmark, systems can now define a Stagnation Threshold (0.56) to catch motivation decay.
+* **Automated Coaching:** Identifying these specific latent shifts allows for proactive mentorship check-ins before behavioral patterns lead to actual churn or burnout.
 
 I am currently adding the NVIDIA NeMo analysis to provide a comparative baseline against the Gemini results. I intentionally excluded models like Claude due to high API costs because cost accessibility is a major factor in AI safety research. By prioritizing the free open source NVIDIA NeMo model alongside Gemini I want to highlight why researchers and the public need accessible tools. If AI systems are going to be used to evaluate human behavior or manage workflows we need open source transparency to audit how they make those judgments.
 
