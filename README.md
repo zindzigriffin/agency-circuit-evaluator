@@ -9,12 +9,13 @@ This project uses Mechanistic Interpretability which is the study of looking ins
 Does the AI only understand the technical words being typed or can it mathematically detect the underlying psychological state of the user?
 
 ## The Experiment An AB Comparison
-To ensure the results were accurate I conducted an AB test comparing two different mathematical brains:
+To ensure the results are robust I plan to conduct an AB test comparing two different mathematical brains:
 
-Model A Google Gemini Embedding 001
-Model B NVIDIA NeMo
+Model A Google Gemini Embedding 001 (Currently Analyzed)
 
-I intentionally excluded models like Claude due to high API costs. Cost accessibility is a major factor in AI safety research. By prioritizing the free open source NVIDIA Nemo model alongside Gemini I want to highlight why researchers and the public need accessible tools. If AI systems are going to be used to evaluate human behavior or manage workflows I need open source transparency to audit how they make those judgments.
+Model B NVIDIA NeMo (Planned Comparison)
+
+I am currently adding the NVIDIA NeMo analysis to provide a comparative baseline against the Gemini results. I intentionally excluded models like Claude due to high API costs because cost accessibility is a major factor in AI safety research. By prioritizing the free open source NVIDIA NeMo model alongside Gemini I want to highlight why researchers and the public need accessible tools. If AI systems are going to be used to evaluate human behavior or manage workflows we need open source transparency to audit how they make those judgments.
 
 ## Methodology
 I developed 15 pairs of status updates where the technical work task is identical for example updating the project database.
