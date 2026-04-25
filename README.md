@@ -47,7 +47,7 @@ By identifying which specific dimensions changed the most between the two person
 The analysis showed perfect linear separability. The AI does not see a gray area. It categorizes professional identity into two distinct mathematical states as shown in the visualization below:
 
 ## Why This Matters
-If I can mathematically identify the tipping point where a professional flips from momentum to decay I can build Predictive Mentorship Systems.
+If I can mathematically identify the tipping point where a professional flips from momentum to decay I can build predictive mentorship systems.
 
 Instead of waiting for a project to fail an AI could monitor the Agency Circuit and automatically alert a mentor to step in. This research bridges the gap between AI mathematical precision and the human empathy required to keep professionals on track.
 
