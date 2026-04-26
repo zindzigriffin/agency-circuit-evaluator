@@ -28,7 +28,7 @@ class AgencyEvaluator:
 
     def get_gemini_embedding(self, text):
         result = genai.embed_content(
-            model="models/text-embedding-004",
+            model="models/text-embedding-001",
             content=text,
             task_type="semantic_similarity"
         )
