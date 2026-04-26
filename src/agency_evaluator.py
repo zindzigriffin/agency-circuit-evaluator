@@ -84,9 +84,28 @@ class AgencyEvaluator:
 
 if __name__ == "__main__":
     evaluator = AgencyEvaluator()
-    
-    # Run against the data template
-    sims, diffs = evaluator.run_analysis("data/contrast_pairs_template.csv", model_type="nvidia")
-    
-    # Isolate the Agency Circuit
-    evaluator.isolate_circuit(diffs)
+    data_path = "data/contrast_pairs_template.csv"
+    results = {}
+
+    for model in ["nvidia", "gemini"]:
+        try:
+            # Silence the internal print statements in run_analysis if needed
+            sims, diffs = evaluator.run_analysis(data_path, model_type=model)
+            results[model] = {
+                "similarity": np.mean(sims),
+                "top_neuron": evaluator.isolate_circuit(diffs, top_n=1)[0]
+            }
+        except Exception as e:
+            print(f"Check keys or quota for {model} {e}")
+
+    if len(results) == 2:
+        print("\n" + "="*30)
+        print("FINAL COMPARATIVE AUDIT")
+        print("="*30)
+        # Using 1 - similarity provides a direct "Sensitivity" metric
+        print(f"NVIDIA Sensitivity {1 - results['nvidia']['similarity']:.4f}")
+        print(f"Gemini Sensitivity {1 - results['gemini']['similarity']:.4f}")
+        print("="*30)
+        print(f"NVIDIA Master Neuron Dimension {results['nvidia']['top_neuron']}")
+        print(f"Gemini Master Neuron Dimension {results['gemini']['top_neuron']}")
+        print("="*30)
