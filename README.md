@@ -16,8 +16,8 @@ This repository contains:
 
 To run this on your own model:
 ```bash
-git clone https://github.com/zindzigriffin/mechanistic-interpretability-agency-study
-cd mechanistic-interpretability-agency-study
+git clone https://github.com/zindzigriffin/agency-circuit-evaluator
+cd agency-circuit-evaluator
 pip install -r requirements.txt
 cp .env.example .env          # add your API keys
 # edit data/contrast_pairs_template.csv with your own pairs
@@ -26,7 +26,7 @@ python src/agency_evaluator.py
 
 ### Repository Structure 
 ```
-mechanistic-interpretability-agency-study/
+agency-circuit-evaluator/
 ├── README.md
 ├── notebooks/
 │   └── agency_circuit_analysis.ipynb   ← research story, PCA visualizations, findings
