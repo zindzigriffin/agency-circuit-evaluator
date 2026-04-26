@@ -25,15 +25,15 @@ python src/agency_evaluator.py
 ### Repository Structure 
 
 agency_circuit_evaluator/
-README.md
-notebooks/
-   agency_circuit_analysis.ipynb
-src/
-   agency_evaluator.py
-data/
-   contrast_pairs_template.csv
-requirements.txt
-.env.example
+├── README.md
+├── notebooks/
+│   └── agency_circuit_analysis.ipynb
+├── src/
+│   └── agency_evaluator.py
+├── data/
+│   └── contrast_pairs_template.csv
+├── requirements.txt
+└── .env.example
 
 ### Why This Research Exists 
 Every year millions of professionals quietly disengage not dramatically not all at once but through subtle behavioral shifts: language that hedges instead of commits updates that report tasks instead of driving outcomes a slow drift from ownership to passivity. Human mentors can sometimes sense this. But they cannot scale.
